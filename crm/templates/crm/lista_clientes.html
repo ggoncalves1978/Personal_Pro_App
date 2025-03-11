@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Clientes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Clientes Cadastrados</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Telefone</th>
+                    <th>Plano Escolhido</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cliente in clientes %}
+                <tr>
+                    <td>{{ cliente.nome }}</td>
+                    <td>{{ cliente.telefone }}</td>
+                    <td>{{ cliente.plano_escolhido }}</td>
+                    <td>
+                        {% if cliente.id %}
+                            <a href="{% url 'editar_registro' cliente.id %}" class="btn btn-warning">Editar</a>
+                            <a href="{% url 'excluir_registro' cliente.id %}" class="btn btn-danger">Excluir</a>
+                        {% else %}
+                            <span>Sem ID</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'novo_cliente' %}" class="btn btn-primary">Novo Cliente</a>
+    </div>
+</body>
+</html>
