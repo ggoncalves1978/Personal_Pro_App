@@ -1,0 +1,20 @@
+{% extends "crm/base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Cadastrar Empresa</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            {{ form.nome_empresa.label_tag }} {{ form.nome_empresa }}
+        </div>
+        <div class="mb-3">
+            {{ form.cnpj_cpf.label_tag }} {{ form.cnpj_cpf }}
+        </div>
+        <div class="mb-3">
+            {{ form.cep.label_tag }} {{ form.cep }}
+        </div>
+        <button type="submit" class="btn btn-primary">Salvar</button>
+    </form>
+</div>
+{% endblock %}

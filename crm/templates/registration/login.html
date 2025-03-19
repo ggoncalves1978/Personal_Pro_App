@@ -1,0 +1,19 @@
+{% extends "crm/base.html" %}  <!-- Se houver um layout base, mantenha esta linha -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <h2>Login</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Entrar</button>
+    </form>
+
+    <p>Ainda não tem uma conta? <a href="{% url 'cadastro_empresa' %}">Crie uma agora</a></p>
+</body>
+</html>
