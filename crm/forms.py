@@ -1,5 +1,6 @@
 from django import forms
-from .models import crm, empresa
+from .models import crm
+from users.models import Empresa
 
 class crm_form(forms.ModelForm):
     class Meta:
@@ -9,7 +10,7 @@ class crm_form(forms.ModelForm):
 
 class empresaForm(forms.ModelForm):
     class Meta:
-        model = empresa
+        model = Empresa
         fields = ["nome_empresa", "cnpj_cpf", "cep"]
         labels = {
             "nome_empresa": "Nome da Empresa",

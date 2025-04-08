@@ -1,10 +1,13 @@
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
-from users.views import cadastro_empresa
+from users.views import cadastro_empresa, login_view, logout_view
+
+app_name = "users"
 
 urlpatterns = [
-    path("login/", auth_views.LoginView.as_view(template_name="users/login.html"), name="login"),
-    path("logout/", auth_views.LogoutView.as_view(), name="logout"),
+    path("login/", login_view, name="login"),
+    path("logout/", logout_view, name="logout"),
     path("cadastro_empresa/", cadastro_empresa, name="cadastro_empresa"),
+    # path("criar_conta/", criar_conta, name="criar_conta"),
 ]
 

@@ -4,7 +4,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db import transaction
 from .forms import crm_form, empresaForm
-from .models import crm, empresa
+from .models import crm
+from users.models import Empresa
 
 
 def home(request):

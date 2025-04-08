@@ -7,6 +7,7 @@ load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+AUTH_USER_MODEL = 'users.CustomUser'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -53,9 +54,7 @@ ROOT_URLCONF = 'setup.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'crm/templates',
-                 BASE_DIR / 'users/templates',
-        ],
+        'DIRS': [BASE_DIR / 'crm/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -88,8 +87,6 @@ DATABASES = {
     }
 }
 
-# Definição do modelo de usuário personalizado
-AUTH_USER_MODEL = 'users.CustomUser'
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -132,10 +129,4 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Configuração de autenticação
-LOGIN_REDIRECT_URL = '/crm/lista_clientes/'  # Redirecionar após login
-LOGOUT_REDIRECT_URL = '/'  # Após logout, volta para home
 
-# Caso queira redirecionar para o CRM
-#LOGIN_REDIRECT_URL = "/crm/"
-#LOGOUT_REDIRECT_URL = "/crm/"

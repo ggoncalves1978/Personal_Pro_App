@@ -1,0 +1,55 @@
+{% extends "crm/base.html" %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h2>Bem-vindo ao Sistema Personal Pro</h2>
+        <p>Escolha uma opção abaixo:</p>
+
+        <a href="{% url 'novo_cliente' %}" class="btn btn-primary">➕ Cadastrar Cliente</a>
+        <a href="{% url 'lista_clientes' %}" class="btn btn-info">📋 Listar Clientes</a>
+
+        <hr>
+
+        <!-- Formulário de Upload -->
+        <h3>Importar Clientes via Excel</h3>
+        <form action="{% url 'importar_clientes' %}" method="post" enctype="multipart/form-data" class="mb-3">
+            {% csrf_token %}
+            <div class="input-group">
+                <input type="file" name="arquivo" accept=".xlsx, .xls" class="form-control">
+                <button type="submit" class="btn btn-success">📂 Importar Excel</button>
+            </div>
+        </form>
+
+        <hr>
+
+        <h3>Clientes Recentes</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Telefone</th>
+                    <th>Plano Escolhido</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cliente in clientes %}
+                <tr>
+                    <td>{{ cliente.nome }}</td>
+                    <td>{{ cliente.telefone }}</td>
+                    <td>{{ cliente.plano_escolhido }}</td>
+                    <td>
+                        <a href="{% url 'editar_registro' cliente.id %}" class="btn btn-warning">✏️ Editar</a>
+                        <a href="{% url 'excluir_registro' cliente.id %}" class="btn btn-danger">🗑️ Excluir</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4" class="text-center">Nenhum cliente cadastrado.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
